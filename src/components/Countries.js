@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCountries } from '../actions';
+import { Link } from 'react-router-dom';
 
 class Countries extends Component {
     componentDidMount() {
@@ -12,6 +13,7 @@ class Countries extends Component {
         
         return this.props.countries.map(country => {
             return (
+                <Link to={`/${country.Slug}`}>
                 <div style={{border: 'solid 1px black'}} key={country.CountryCode}>
                     <div className="content">
                         <h2>{country.Country}</h2>
@@ -21,6 +23,7 @@ class Countries extends Component {
                         
                     </div>
                 </div>
+            </Link>
             )
         })
     }

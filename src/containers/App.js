@@ -1,13 +1,18 @@
 import React from 'react';
-import CountryList from './CountryList';
-import Global from '../components/Global';
+import { BrowserRouter, Route, Switch} from 'react-router-dom';
+import HomePage from './HomePage';
+import CountryDetail from '../components/CountryDetail';
 
 
 const App = () => {
   return (
     <>
-      <Global />
-      <CountryList />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={HomePage}/>
+          <Route exact path="/:countrySlug" component={CountryDetail}/>
+        </Switch>
+      </BrowserRouter>
     </>
   )
 }
