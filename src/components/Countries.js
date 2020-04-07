@@ -13,8 +13,8 @@ class Countries extends Component {
         
         return this.props.countries.map(country => {
             return (
-                <Link to={`/${country.Slug}`}>
-                <div style={{border: 'solid 1px black'}} key={country.CountryCode}>
+                <Link to={`/${country.Slug}`} key={country.CountryCode}>
+                <div style={{border: 'solid 1px black'}} >
                     <div className="content">
                         <h2>{country.Country}</h2>
                         <p>Total Confirmed: {country.TotalConfirmed}</p>

@@ -1,33 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCountry } from '../actions';
+import { fetchHistory } from '../actions';
+
 
 class CountryDetail extends Component {
+    
     componentDidMount() {
-        this.props.fetchCountry(this.props.match.params.countrySlug);
+        this.props.fetchHistory(this.props.match.params.countrySlug);
     }
 
-    handleDisplay = () => {
-        if(this.props.country.length === 0) {
-            return <h1>Not enough data</h1>
-        }
-        else {
-            return (
-                <h1> Detail </h1>
-            )
-        }
-    }
 
     render() {
-        console.log(this.props);
+        console.log(this.props)
         return (
-            this.handleDisplay() 
+            
+            <h1> Detail </h1>
         )  
     }
 }
 
 const mapStateToProps = (state) => {
-    return {country: state.country}
+    return {
+        countryHistory: state.countryHistory
+    }
 }
 
-export default connect(mapStateToProps, {fetchCountry})(CountryDetail);
+export default connect(mapStateToProps, {fetchHistory})(CountryDetail);
