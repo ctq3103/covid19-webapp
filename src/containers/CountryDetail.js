@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchHistory } from '../actions';
-import { getDate, getCases } from '../components/utils';
+import { getDate, getCases } from '../utils/utils';
 import CountryChart from '../components/CountryChart';
 
 class CountryDetail extends Component {

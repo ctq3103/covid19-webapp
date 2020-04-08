@@ -1,37 +1,27 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchGlobal } from '../actions';
-import { numReformat } from './utils';
+import React from 'react';
+import _ from 'lodash';
+import { numReformat } from '../utils/utils';
 
-class Global extends Component {
+const Global = ({globalData}) => {
 
-    componentDidMount() {
-        this.props.fetchGlobal();        
-    }
+    const {TotalConfirmed, TotalDeaths, TotalRecovered } = globalData;
 
-    render() {
-        const {TotalConfirmed, TotalDeaths, TotalRecovered } = this.props.global;
-
-        return (
-            <div>
-                <div style={{backgroundColor: 'teal'}}>
-                    <div className="content">
-                        <h2>Global</h2>
-                        <p>Total Confirmed: {numReformat(TotalConfirmed)}</p>
-                        <p>Total Recovered: {numReformat(TotalRecovered)}</p>
-                        <p>Total Deaths: {numReformat(TotalDeaths)}</p>                                 
-                    </div>
+    return (
+        <div>
+        {! _.isEmpty(globalData) &&
+            <div style={{backgroundColor: 'teal'}}>
+                <div className="content">
+                    <h2>Global</h2>
+                    <p>Total Confirmed: {numReformat(TotalConfirmed)}</p>
+                    <p>Total Recovered: {numReformat(TotalRecovered)}</p>
+                    <p>Total Deaths: {numReformat(TotalDeaths)}</p>                                 
                 </div>
             </div>
-        )
-    }
+        }
+        </div>
+    )
 }
 
-const mapStateToProps = state => {
-    return { 
-        global: state.global }
-}
-
-export default connect(mapStateToProps, { fetchGlobal })(Global);
+export default Global;
 
 
