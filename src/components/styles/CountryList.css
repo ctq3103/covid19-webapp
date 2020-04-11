@@ -1,0 +1,24 @@
+.countries-cards {
+    margin-top: 50px;
+}
+
+.countries-cards-title {
+    font-size: 24px;
+    color: hsl(0, 0%, 100%);
+    margin: 0;
+}
+
+.light .countries-cards-title {
+    color: hsl(230, 17%, 14%);
+}
+
+.card-columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-column {
+    display: grid;
+    grid-row-gap: 25px;
+}
+

@@ -1,0 +1,68 @@
+.card-columns {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    background-color: rgb(37, 42, 65);
+    padding: 25px;
+    box-sizing: border-box;
+    text-align: center;
+    position: relative;
+}
+.light .card {
+    background-color: rgb(240, 242, 250);
+}
+
+.card-column {
+    display: grid;
+    grid-row-gap: 25px;
+    text-align: left;
+}
+
+.card-column:nth-child(2) {
+    text-align: right;
+}
+
+.country-flag {
+    margin-right: 10px;
+}
+
+.country-name {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.total-cases {
+    font-size: 36px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    line-height: 0.9em;
+}
+
+
+.light .total-cases {
+    color: rgb(30, 32, 42);
+}
+
+.change {
+    color: rgb(29, 180, 137);
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.change-negative {
+    color: rgb(220, 65, 76);
+}
+
+@media (max-width: 960px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,36 @@
+.pagination-section {
+    margin: 5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    place-items: center;
+}
+
+.pagination {
+    list-style-type: none;
+    display: flex;
+}
+
+.pagination span {
+    text-decoration: none;
+    background: rgb(37, 42, 65);
+    color: #fff;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgb(37, 42, 65);
+}
+
+.second span {
+    background: #fff;
+    color: rgb(37, 42, 65);
+}
+
+.second li:not(:last-of-type) a {
+    border-right-color: #fff;
+}
+
+.second span:hover {
+    background: rgb(37, 42, 65);
+    color: #fff;
+    border-right-color: rgb(37, 42, 65) !important;
+    opacity: 1;
+}

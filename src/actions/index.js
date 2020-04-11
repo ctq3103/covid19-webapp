@@ -1,6 +1,6 @@
 import covid19api from '../apis/covid19api';
 import _ from 'lodash';
-import { FETCH_COUNTRIES, FETCH_GLOBAL, FETCH_HISTORY, CHANGE_SEARCH_FIELD } from '../types';
+import { FETCH_COUNTRIES, FETCH_GLOBAL, FETCH_HISTORY, CHANGE_SEARCH_FIELD, FETCH_LAST_UPDATED } from '../types';
 
 export const fetchCountries = () => 
     async dispatch => {
@@ -13,6 +13,12 @@ export const fetchGlobal = () =>
     async dispatch => {
         const response = await covid19api.get('/summary');
         dispatch ({ type: FETCH_GLOBAL, payload: response.data.Global});
+    } 
+
+export const fetchLastUpdated = () => 
+    async dispatch => {
+        const response = await covid19api.get('/summary');
+        dispatch ({ type: FETCH_LAST_UPDATED, payload: response.data.Date});
     } 
 
 export const fetchHistory = (slug) =>

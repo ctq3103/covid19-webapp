@@ -1,57 +1,45 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { fetchGlobal } from '../actions';
+import React from 'react';
 import _ from 'lodash';
 import { numReformat } from '../utils/utils';
-
 import './styles/Global.css';
 import CardItem from './CardItem';
 
-class Global extends Component {
-    componentDidMount() {
-        this.props.fetchGlobal();
-    }
-    
-    render() {
-        const {TotalConfirmed, TotalDeaths, TotalRecovered, NewConfirmed, NewDeaths, NewRecovered } = this.props.globalData;
 
-        return (
-            <section className="cards">
-                {!(_.isEmpty(this.props.globalData)) &&
-                <>
+const CountriesDetailData = ({selectedCountry}) => {
+
+    const {Country, TotalConfirmed, TotalDeaths, TotalRecovered, NewConfirmed, NewDeaths, NewRecovered } = selectedCountry;
+ 
+    return (
+        <section className="cards">
+            {!(_.isEmpty(selectedCountry)) &&
+            <>
                     <CardItem 
-                        cardTitle='Worldwide'
+                        cardTitle={Country}
                         dataValue={numReformat(TotalConfirmed)}
                         dataTitle='TOTAL CONFIRMED'
                         changeValue={numReformat(NewConfirmed)}
                         changeClassName={NewConfirmed > 0 ? "change-negative" : "change"}
                     />
                     <CardItem 
-                        cardTitle='Worldwide'
+                        cardTitle={Country}
                         dataValue={numReformat(TotalRecovered)}
                         dataTitle='TOTAL RECORVERED'
                         changeValue={numReformat(NewRecovered)}
                         changeClassName={NewRecovered > 0 ? "change" : "change-negative"}
                     />
                     <CardItem 
-                        cardTitle='Worldwide'
+                        cardTitle={Country}
                         dataValue={numReformat(TotalDeaths)}
                         dataTitle='TOTAL RECORVERED'
                         changeValue={numReformat(NewDeaths)}
                         changeClassName={NewDeaths > 0 ? "change-negative" : "change"}
                     />
-                </>
-                }
-                </section>
+            </>
+            }
+            </section>
                 )
-        }
 }
 
-const mapStateToProps = state => {
-    return { 
-      globalData: state.global }
-  }
-
-export default connect(mapStateToProps, {fetchGlobal})(Global);
+export default CountriesDetailData;
 
 

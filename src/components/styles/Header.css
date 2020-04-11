@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+}
+
+.header-title {
+    font-size: 26px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 10px;
+}
+
+.header-subtext {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+@media (max-width: 960px) {
+    .header {
+        flex-wrap: wrap;
+    }
+}

@@ -1,27 +1,38 @@
 import React from 'react';
 import { numReformat } from '../utils/utils';
 import { Link } from 'react-router-dom';
+import './styles/CountryItem.css';
+
 
 const CountryItem = ({country}) => {
 
-    const {Country, CountryCode, TotalConfirmed, TotalDeaths, TotalRecovered } = country;
+    const {Country, Slug, CountryCode, TotalConfirmed, NewConfirmed } = country;
 
     return (
-        <Link to={`/${country.Slug}`} key={CountryCode}>
-        <div style={{border: 'solid 1px black'}} >
-            <div className="content">
-                <h2>{Country}</h2>
-                <p>Total Confirmed: {numReformat(TotalConfirmed)}</p>
-                <p>Total Recovered: {numReformat(TotalRecovered)}</p>
-                <p>Total Deaths: {numReformat(TotalDeaths)}</p>
-                
-                
+        <Link 
+            to={`/${Slug}`} 
+            key={CountryCode}
+            style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className="card card-columns">
+                <div className="card-column">
+                    <span className="country-name">
+                    {Country}
+                    </span>
+                    <span className="total-cases">
+                    {numReformat(TotalConfirmed)}
+                    </span>
+                </div>
+                <div className="card-column">
+                    <span>
+                    <img alt={CountryCode} className="country-flag" src={`https://www.countryflags.io/${CountryCode.toLowerCase()}/shiny/64.png`} />
+                    </span>
+                    <span className={ NewConfirmed > 0 ? "change-negative" : "change"}>
+                    {numReformat(NewConfirmed)} Today
+                    </span>
+                </div>
             </div>
-        </div>
-    </Link>
+        </Link>
     )
 }
 
 export default CountryItem;
-
-

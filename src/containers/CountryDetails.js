@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchHistory } from '../actions';
+import { fetchHistory, fetchCountries } from '../actions';
 import { getDate, getCases } from '../utils/utils';
-import CountryChart from '../components/CountryChart';
+import CountryDetailChart from '../components/CountryDetailChart';
+import CountryDetailData from '../components/CountryDetailData';
 
 class CountryDetail extends Component {
     constructor() {
@@ -14,13 +15,23 @@ class CountryDetail extends Component {
             recoveredCases: [],
             deathsDate: [],
             deathsCases: [],
-            isLoading: true
+            selectedCountry: {}
         }
     }
 
     async componentDidMount() {
         await this.props.fetchHistory(this.props.match.params.countrySlug);
-        this.getChartData();       
+        await this.props.fetchCountries();
+        this.getCountryData();
+        this.getChartData();    
+    }
+
+    getCountryData() {
+        const { countries } = this.props;
+        const selectedCountry = countries.filter(country => country.Slug === this.props.match.params.countrySlug)[0];
+        this.setState({
+            selectedCountry: selectedCountry
+        })
     }
 
     getChartData() {
@@ -40,27 +51,19 @@ class CountryDetail extends Component {
             recoveredCases: recoveredCases, 
             deathsDate: deathsDate,
             deathsCases: deathsCases,
-            isLoading: false
         });
     }
 
     render() {
-        console.log('Detail:', this.state);
-        const { confirmedCases, confirmedDate, recoveredCases, recoveredDate, deathsCases, deathsDate, isLoading } = this.state;
+         
 
-        if (confirmedCases.length === 0
-            && confirmedDate.length === 0
-            && recoveredCases.length === 0
-            && recoveredDate.length === 0
-            && deathsCases.length === 0
-            && deathsDate.length === 0 
-            && isLoading === false) {
-                return <h1>Sorry, we do not have data of this country</h1>
-            }
-        
+        const { confirmedCases, confirmedDate, recoveredCases, recoveredDate, deathsCases, deathsDate } = this.state;
+
+
         return (
             <div>
-                <CountryChart 
+                <CountryDetailData selectedCountry={this.state.selectedCountry}/>
+                <CountryDetailChart
                     confirmedDate={confirmedDate} 
                     confirmedCases={confirmedCases} 
                     recoveredDate={recoveredDate}                    recoveredCases={recoveredCases} 
@@ -74,8 +77,9 @@ class CountryDetail extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        countryHistory: state.countryHistory
+        countryHistory: state.countryHistory,
+        countries: state.countries
     }
 }
 
-export default connect(mapStateToProps, {fetchHistory})(CountryDetail);
+export default connect(mapStateToProps, {fetchHistory, fetchCountries})(CountryDetail);
