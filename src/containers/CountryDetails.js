@@ -4,6 +4,9 @@ import { fetchHistory, fetchCountries } from '../actions';
 import { getDate, getCases } from '../utils/utils';
 import CountryDetailChart from '../components/CountryDetailChart';
 import CountryDetailData from '../components/CountryDetailData';
+import Button from '../components/Button';
+import Loading from '../components/Loading';
+import { Link } from 'react-router-dom';
 
 class CountryDetail extends Component {
     constructor() {
@@ -55,20 +58,28 @@ class CountryDetail extends Component {
     }
 
     render() {
-         
+         const {confirmed, recovered, deaths} = this.props.countryHistory;
 
         const { confirmedCases, confirmedDate, recoveredCases, recoveredDate, deathsCases, deathsDate } = this.state;
 
+        console.log(this.props);
 
+        if (this.props.loading) return <Loading />
         return (
             <div>
+                
                 <CountryDetailData selectedCountry={this.state.selectedCountry}/>
                 <CountryDetailChart
+                    confirmed={confirmed}
+                    deaths={deaths}
+                    recovered={recovered}
                     confirmedDate={confirmedDate} 
                     confirmedCases={confirmedCases} 
-                    recoveredDate={recoveredDate}                    recoveredCases={recoveredCases} 
+                    recoveredDate={recoveredDate}                    
+                    recoveredCases={recoveredCases} 
                     deathsDate={deathsDate}
                     deathsCases={deathsCases} />
+                <Link to={"/"} style={{ textDecoration: 'none' }}><Button buttonAction="Back To Homepage" /></Link>
             </div>
         )    
     }
@@ -78,7 +89,8 @@ class CountryDetail extends Component {
 const mapStateToProps = (state) => {
     return {
         countryHistory: state.countryHistory,
-        countries: state.countries
+        countries: state.countries,
+        loading: state.async.loading
     }
 }
 

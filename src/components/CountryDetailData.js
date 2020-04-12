@@ -23,14 +23,14 @@ const CountriesDetailData = ({selectedCountry}) => {
                     <CardItem 
                         cardTitle={Country}
                         dataValue={numReformat(TotalRecovered)}
-                        dataTitle='TOTAL RECORVERED'
+                        dataTitle='TOTAL RECOVERED'
                         changeValue={numReformat(NewRecovered)}
                         changeClassName={NewRecovered > 0 ? "change" : "change-negative"}
                     />
                     <CardItem 
                         cardTitle={Country}
                         dataValue={numReformat(TotalDeaths)}
-                        dataTitle='TOTAL RECORVERED'
+                        dataTitle='TOTAL DEATHS'
                         changeValue={numReformat(NewDeaths)}
                         changeClassName={NewDeaths > 0 ? "change-negative" : "change"}
                     />

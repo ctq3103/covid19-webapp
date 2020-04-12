@@ -13,24 +13,24 @@
 
 .pagination span {
     text-decoration: none;
-    background: rgb(37, 42, 65);
-    color: #fff;
+    background: #fff;
+    color:rgb(37, 42, 65);
     padding: 0.75rem 1rem;
-    border: 1px solid rgb(37, 42, 65);
 }
 
 .second span {
-    background: #fff;
-    color: rgb(37, 42, 65);
+    background: rgb(37, 42, 65);
+    color: #fff;
 }
 
 .second li:not(:last-of-type) a {
-    border-right-color: #fff;
+    border-right-color: rgb(37, 42, 65);
 }
 
 .second span:hover {
-    background: rgb(37, 42, 65);
-    color: #fff;
+    background: #fff;
+    color: rgb(37, 42, 65);
     border-right-color: rgb(37, 42, 65) !important;
     opacity: 1;
+    cursor: pointer;
 }

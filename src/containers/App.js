@@ -11,8 +11,9 @@ const App = () => {
 
     return (
       <div className="container">
+      <BrowserRouter>
         <Header />
-        <BrowserRouter>
+
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/:countrySlug" component={CountryDetails} />

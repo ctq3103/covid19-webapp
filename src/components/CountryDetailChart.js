@@ -47,8 +47,8 @@ const CountryChart = ({ confirmedCases, confirmedDate, recoveredCases, recovered
                 width: 820,
                 height: 520,
                 title: "Number of Cases by Status from Day One",
-                paper_bgcolor: "rgb(37, 42, 65, 0.7)",
-                plot_bgcolor: "rgb(37, 42, 65, 0.7)",
+                paper_bgcolor: "rgb(46, 52, 80)",
+                plot_bgcolor: "rgb(46, 52, 80)",
                 font: {
                     size: 16,
                     color: '#ecf0f1'

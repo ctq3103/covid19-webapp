@@ -5,6 +5,7 @@ import { fetchLastUpdated } from '../actions';
 
 import './styles/Header.css';
 
+
 class Header extends Component {
     componentDidMount() {   
         this.props.fetchLastUpdated();
@@ -12,19 +13,24 @@ class Header extends Component {
 
     render() {
         return (
+            
             <header className="header">
                 <div className="header-left">
-                <h1 className="header-title">Covid-19 Report</h1>
-                <span className="header-subtext">Last Updated On: {moment(this.props.lastUpdated).format('MMMM Do YYYY, h:mm:ss a')}</span>
+                    <h1 className="header-title">Covid-19 Daily Report</h1>
+
+                {this.props.loading === false &&
+                <span className="header-subtext">Last Updated On: {moment(this.props.lastUpdated).format('MMMM Do YYYY, h:mm:ss a')}</span>}
                 </div>
             </header>
+
         )
     }
 }
 
 const mapStateToProps = state => {
     return { 
-      lastUpdated: state.lastUpdated
+      lastUpdated: state.lastUpdated, 
+      loading: state.async.loading
     }
   }
   

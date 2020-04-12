@@ -6,6 +6,7 @@ import { numReformat } from '../utils/utils';
 
 import './styles/Global.css';
 import CardItem from './CardItem';
+import Loading from './Loading';
 
 class Global extends Component {
     componentDidMount() {
@@ -14,7 +15,7 @@ class Global extends Component {
     
     render() {
         const {TotalConfirmed, TotalDeaths, TotalRecovered, NewConfirmed, NewDeaths, NewRecovered } = this.props.globalData;
-
+        if (this.props.loading) return <Loading />
         return (
             <section className="cards">
                 {!(_.isEmpty(this.props.globalData)) &&
@@ -49,7 +50,8 @@ class Global extends Component {
 
 const mapStateToProps = state => {
     return { 
-      globalData: state.global }
+        globalData: state.global,
+        loading: state.async.loading }
   }
 
 export default connect(mapStateToProps, {fetchGlobal})(Global);

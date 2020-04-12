@@ -4,6 +4,7 @@ import { fetchCountries, setSearchField } from '../actions';
 import SearchInput from './SearchInput';
 import './styles/CountryList.css';
 import Countries from './Countries';
+import Loading from './Loading';
 
 class CountryList extends Component {
     constructor(props) {
@@ -24,7 +25,7 @@ class CountryList extends Component {
     
     
     render() {
-        const {countries, searchCountry, searchInput } = this.props;
+        const {countries, searchCountry, searchInput, loading } = this.props;
         const { currentPage, countriesPerPage } = this.state;
 
         //filter countries for search 
@@ -41,11 +42,12 @@ class CountryList extends Component {
 
         const paginate = (pageNumber) => this.setCurrentPage(pageNumber);
         
+        if (loading) return <Loading />
         return (
             <section className="countries-cards">
                 <div className="card-columns">
                     <h2 className="countries-cards-title"> 
-                        Overview - Today
+                        Total Cases By Countries
                     </h2>
                     <SearchInput searchCountry={searchCountry} />
                 </div>
@@ -64,7 +66,8 @@ class CountryList extends Component {
 const mapStateToProps = state => {
     return {
         countries: state.countries,
-        searchInput: state.searchInput }
+        searchInput: state.searchInput,
+        loading: state.async.loading }
 }
 
 const mapDispatchToProps = dispatch => {
