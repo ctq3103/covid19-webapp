@@ -62,8 +62,6 @@ class CountryDetail extends Component {
 
         const { confirmedCases, confirmedDate, recoveredCases, recoveredDate, deathsCases, deathsDate } = this.state;
 
-        console.log(this.props);
-
         if (this.props.loading) return <Loading />
         return (
             <div>
